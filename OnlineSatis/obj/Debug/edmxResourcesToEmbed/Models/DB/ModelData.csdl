@@ -1,0 +1,519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineSatisDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Eposta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sifre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Yetki" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="BlogId" />
+    </Key>
+    <Property Name="BlogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Baslik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BlogKategoriId" Type="Int32" />
+    <Property Name="ResimURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BlogKategori" Relationship="Self.FK_dbo_Blog_dbo_BlogKategori_BlogKategoriId" FromRole="Blog" ToRole="BlogKategori" />
+    <NavigationProperty Name="Like" Relationship="Self.FK_dbo_Like_dbo_Blog_Blog_BlogId" FromRole="Blog" ToRole="Like" />
+    <NavigationProperty Name="Yorum" Relationship="Self.FK_dbo_Yorum_dbo_Blog_BlogId" FromRole="Blog" ToRole="Yorum" />
+  </EntityType>
+  <EntityType Name="BlogKategori">
+    <Key>
+      <PropertyRef Name="BlogKategoriId" />
+    </Key>
+    <Property Name="BlogKategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Blog" Relationship="Self.FK_dbo_Blog_dbo_BlogKategori_BlogKategoriId" FromRole="BlogKategori" ToRole="Blog" />
+  </EntityType>
+  <EntityType Name="Hakkimizda">
+    <Key>
+      <PropertyRef Name="HakkimizdaId" />
+    </Key>
+    <Property Name="HakkimizdaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Iletisim">
+    <Key>
+      <PropertyRef Name="IletisimId" />
+    </Key>
+    <Property Name="IletisimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Facebook" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Twitter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Instagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Youtube" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Kargo">
+    <Key>
+      <PropertyRef Name="KargoId" />
+    </Key>
+    <Property Name="KargoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SirketAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WebSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Satis" Relationship="Self.FK_dbo_Satis_dbo_Kargo_KargoId" FromRole="Kargo" ToRole="Satis" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="KategoriId" />
+    </Key>
+    <Property Name="KategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ResimId" Type="Int32" />
+    <NavigationProperty Name="Urun" Relationship="Self.FK_dbo_Urun_dbo_Kategori_KategoriId" FromRole="Kategori" ToRole="Urun" />
+    <NavigationProperty Name="Resim" Relationship="Self.FK_Kategori_Resim" FromRole="Kategori" ToRole="Resim" />
+  </EntityType>
+  <EntityType Name="Kimlik">
+    <Key>
+      <PropertyRef Name="KimlikId" />
+    </Key>
+    <Property Name="KimlikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Keywords" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LogoURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Unvan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Like">
+    <Key>
+      <PropertyRef Name="LikeId" />
+    </Key>
+    <Property Name="LikeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrunId" Type="Int32" Nullable="false" />
+    <Property Name="Blog_BlogId" Type="Int32" />
+    <Property Name="ResimURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Blog" Relationship="Self.FK_dbo_Like_dbo_Blog_Blog_BlogId" FromRole="Like" ToRole="Blog" />
+    <NavigationProperty Name="OneCikanlar" Relationship="Self.FK_dbo_OneCikanlar_dbo_Like_Like_LikeId" FromRole="Like" ToRole="OneCikanlar" />
+  </EntityType>
+  <EntityType Name="Marka">
+    <Key>
+      <PropertyRef Name="MarkaId" />
+    </Key>
+    <Property Name="MarkaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ResimId" Type="Int32" />
+    <NavigationProperty Name="Urun" Relationship="Self.FK_dbo_Urun_dbo_Marka_MarkaId" FromRole="Marka" ToRole="Urun" />
+    <NavigationProperty Name="Resim" Relationship="Self.FK_Marka_Resim" FromRole="Marka" ToRole="Resim" />
+  </EntityType>
+  <EntityType Name="Musteri">
+    <Key>
+      <PropertyRef Name="MusteriId" />
+    </Key>
+    <Property Name="MusteriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Soyadi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Satis" Relationship="Self.FK_dbo_Satis_dbo_Musteri_Musteri_MusteriId" FromRole="Musteri" ToRole="Satis" />
+  </EntityType>
+  <EntityType Name="OneCikanlar">
+    <Key>
+      <PropertyRef Name="OneCikanlarId" />
+    </Key>
+    <Property Name="OneCikanlarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Baslik" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Like_LikeId" Type="Int32" />
+    <Property Name="Yorum_YorumId" Type="Int32" />
+    <Property Name="ResimURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Like" Relationship="Self.FK_dbo_OneCikanlar_dbo_Like_Like_LikeId" FromRole="OneCikanlar" ToRole="Like" />
+    <NavigationProperty Name="Yorum" Relationship="Self.FK_dbo_OneCikanlar_dbo_Yorum_Yorum_YorumId" FromRole="OneCikanlar" ToRole="Yorum" />
+  </EntityType>
+  <EntityType Name="Resim">
+    <Key>
+      <PropertyRef Name="ResimId" />
+    </Key>
+    <Property Name="ResimId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResimURL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UrunId" Type="Int32" />
+    <NavigationProperty Name="Kategori" Relationship="Self.FK_Kategori_Resim" FromRole="Resim" ToRole="Kategori" />
+    <NavigationProperty Name="Marka" Relationship="Self.FK_Marka_Resim" FromRole="Resim" ToRole="Marka" />
+    <NavigationProperty Name="Urun" Relationship="Self.FK_Resim_Urun" FromRole="Resim" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="Satis">
+    <Key>
+      <PropertyRef Name="SatisId" />
+    </Key>
+    <Property Name="SatisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MusteriId" Type="Guid" Nullable="false" />
+    <Property Name="SatisTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ToplamTutar" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="SepetteMi" Type="Boolean" Nullable="false" />
+    <Property Name="KargoId" Type="Int32" Nullable="false" />
+    <Property Name="SiparisDurumId" Type="Int32" Nullable="false" />
+    <Property Name="KargoTakipNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Musteri_MusteriId" Type="Int32" />
+    <Property Name="SatisDetay_SatisId" Type="Int32" />
+    <NavigationProperty Name="Kargo" Relationship="Self.FK_dbo_Satis_dbo_Kargo_KargoId" FromRole="Satis" ToRole="Kargo" />
+    <NavigationProperty Name="Musteri" Relationship="Self.FK_dbo_Satis_dbo_Musteri_Musteri_MusteriId" FromRole="Satis" ToRole="Musteri" />
+    <NavigationProperty Name="SiparisDurum" Relationship="Self.FK_dbo_Satis_dbo_SiparisDurum_SiparisDurumId" FromRole="Satis" ToRole="SiparisDurum" />
+  </EntityType>
+  <EntityType Name="SiparisDurum">
+    <Key>
+      <PropertyRef Name="SiparisDurumId" />
+    </Key>
+    <Property Name="SiparisDurumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Satis" Relationship="Self.FK_dbo_Satis_dbo_SiparisDurum_SiparisDurumId" FromRole="SiparisDurum" ToRole="Satis" />
+  </EntityType>
+  <EntityType Name="Slider">
+    <Key>
+      <PropertyRef Name="SliderId" />
+    </Key>
+    <Property Name="SliderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Baslik" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ResimURL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Urun">
+    <Key>
+      <PropertyRef Name="UrunId" />
+    </Key>
+    <Property Name="UrunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AlisFiyat" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="SatisFiyat" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="EklenmeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="KategoriId" Type="Int32" Nullable="false" />
+    <Property Name="MarkaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Kategori" Relationship="Self.FK_dbo_Urun_dbo_Kategori_KategoriId" FromRole="Urun" ToRole="Kategori" />
+    <NavigationProperty Name="Marka" Relationship="Self.FK_dbo_Urun_dbo_Marka_MarkaId" FromRole="Urun" ToRole="Marka" />
+    <NavigationProperty Name="Resim" Relationship="Self.FK_Resim_Urun" FromRole="Urun" ToRole="Resim" />
+  </EntityType>
+  <EntityType Name="UrunVaryant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UrunId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Yorum">
+    <Key>
+      <PropertyRef Name="YorumId" />
+    </Key>
+    <Property Name="YorumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eposta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BlogId" Type="Int32" Nullable="false" />
+    <Property Name="Onay" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Blog" Relationship="Self.FK_dbo_Yorum_dbo_Blog_BlogId" FromRole="Yorum" ToRole="Blog" />
+    <NavigationProperty Name="OneCikanlar" Relationship="Self.FK_dbo_OneCikanlar_dbo_Yorum_Yorum_YorumId" FromRole="Yorum" ToRole="OneCikanlar" />
+  </EntityType>
+  <Association Name="FK_dbo_Blog_dbo_BlogKategori_BlogKategoriId">
+    <End Role="BlogKategori" Type="Self.BlogKategori" Multiplicity="0..1" />
+    <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlogKategori">
+        <PropertyRef Name="BlogKategoriId" />
+      </Principal>
+      <Dependent Role="Blog">
+        <PropertyRef Name="BlogKategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Like_dbo_Blog_Blog_BlogId">
+    <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+    <End Role="Like" Type="Self.Like" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog">
+        <PropertyRef Name="BlogId" />
+      </Principal>
+      <Dependent Role="Like">
+        <PropertyRef Name="Blog_BlogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Yorum_dbo_Blog_BlogId">
+    <End Role="Blog" Type="Self.Blog" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Blog">
+        <PropertyRef Name="BlogId" />
+      </Principal>
+      <Dependent Role="Yorum">
+        <PropertyRef Name="BlogId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Satis_dbo_Kargo_KargoId">
+    <End Role="Kargo" Type="Self.Kargo" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Satis" Type="Self.Satis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kargo">
+        <PropertyRef Name="KargoId" />
+      </Principal>
+      <Dependent Role="Satis">
+        <PropertyRef Name="KargoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Urun_dbo_Kategori_KategoriId">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="Urun">
+        <PropertyRef Name="KategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kategori_Resim">
+    <End Role="Resim" Type="Self.Resim" Multiplicity="0..1" />
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resim">
+        <PropertyRef Name="ResimId" />
+      </Principal>
+      <Dependent Role="Kategori">
+        <PropertyRef Name="ResimId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OneCikanlar_dbo_Like_Like_LikeId">
+    <End Role="Like" Type="Self.Like" Multiplicity="0..1" />
+    <End Role="OneCikanlar" Type="Self.OneCikanlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Like">
+        <PropertyRef Name="LikeId" />
+      </Principal>
+      <Dependent Role="OneCikanlar">
+        <PropertyRef Name="Like_LikeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Urun_dbo_Marka_MarkaId">
+    <End Role="Marka" Type="Self.Marka" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Marka">
+        <PropertyRef Name="MarkaId" />
+      </Principal>
+      <Dependent Role="Urun">
+        <PropertyRef Name="MarkaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Marka_Resim">
+    <End Role="Resim" Type="Self.Resim" Multiplicity="0..1" />
+    <End Role="Marka" Type="Self.Marka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resim">
+        <PropertyRef Name="ResimId" />
+      </Principal>
+      <Dependent Role="Marka">
+        <PropertyRef Name="ResimId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Satis_dbo_Musteri_Musteri_MusteriId">
+    <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
+    <End Role="Satis" Type="Self.Satis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musteri">
+        <PropertyRef Name="MusteriId" />
+      </Principal>
+      <Dependent Role="Satis">
+        <PropertyRef Name="Musteri_MusteriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_OneCikanlar_dbo_Yorum_Yorum_YorumId">
+    <End Role="Yorum" Type="Self.Yorum" Multiplicity="0..1" />
+    <End Role="OneCikanlar" Type="Self.OneCikanlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yorum">
+        <PropertyRef Name="YorumId" />
+      </Principal>
+      <Dependent Role="OneCikanlar">
+        <PropertyRef Name="Yorum_YorumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resim_Urun">
+    <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+    <End Role="Resim" Type="Self.Resim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="Resim">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Satis_dbo_SiparisDurum_SiparisDurumId">
+    <End Role="SiparisDurum" Type="Self.SiparisDurum" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Satis" Type="Self.Satis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SiparisDurum">
+        <PropertyRef Name="SiparisDurumId" />
+      </Principal>
+      <Dependent Role="Satis">
+        <PropertyRef Name="SiparisDurumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OnlineSatisDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="Admin" EntityType="Self.Admin" />
+    <EntitySet Name="Blog" EntityType="Self.Blog" />
+    <EntitySet Name="BlogKategori" EntityType="Self.BlogKategori" />
+    <EntitySet Name="Hakkimizda" EntityType="Self.Hakkimizda" />
+    <EntitySet Name="Iletisim" EntityType="Self.Iletisim" />
+    <EntitySet Name="Kargo" EntityType="Self.Kargo" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" />
+    <EntitySet Name="Kimlik" EntityType="Self.Kimlik" />
+    <EntitySet Name="Like" EntityType="Self.Like" />
+    <EntitySet Name="Marka" EntityType="Self.Marka" />
+    <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+    <EntitySet Name="OneCikanlar" EntityType="Self.OneCikanlar" />
+    <EntitySet Name="Resim" EntityType="Self.Resim" />
+    <EntitySet Name="Satis" EntityType="Self.Satis" />
+    <EntitySet Name="SiparisDurum" EntityType="Self.SiparisDurum" />
+    <EntitySet Name="Slider" EntityType="Self.Slider" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Urun" EntityType="Self.Urun" />
+    <EntitySet Name="UrunVaryant" EntityType="Self.UrunVaryant" />
+    <EntitySet Name="Yorum" EntityType="Self.Yorum" />
+    <AssociationSet Name="FK_dbo_Blog_dbo_BlogKategori_BlogKategoriId" Association="Self.FK_dbo_Blog_dbo_BlogKategori_BlogKategoriId">
+      <End Role="BlogKategori" EntitySet="BlogKategori" />
+      <End Role="Blog" EntitySet="Blog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Like_dbo_Blog_Blog_BlogId" Association="Self.FK_dbo_Like_dbo_Blog_Blog_BlogId">
+      <End Role="Blog" EntitySet="Blog" />
+      <End Role="Like" EntitySet="Like" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Yorum_dbo_Blog_BlogId" Association="Self.FK_dbo_Yorum_dbo_Blog_BlogId">
+      <End Role="Blog" EntitySet="Blog" />
+      <End Role="Yorum" EntitySet="Yorum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Satis_dbo_Kargo_KargoId" Association="Self.FK_dbo_Satis_dbo_Kargo_KargoId">
+      <End Role="Kargo" EntitySet="Kargo" />
+      <End Role="Satis" EntitySet="Satis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Urun_dbo_Kategori_KategoriId" Association="Self.FK_dbo_Urun_dbo_Kategori_KategoriId">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Urun" EntitySet="Urun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kategori_Resim" Association="Self.FK_Kategori_Resim">
+      <End Role="Resim" EntitySet="Resim" />
+      <End Role="Kategori" EntitySet="Kategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OneCikanlar_dbo_Like_Like_LikeId" Association="Self.FK_dbo_OneCikanlar_dbo_Like_Like_LikeId">
+      <End Role="Like" EntitySet="Like" />
+      <End Role="OneCikanlar" EntitySet="OneCikanlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Urun_dbo_Marka_MarkaId" Association="Self.FK_dbo_Urun_dbo_Marka_MarkaId">
+      <End Role="Marka" EntitySet="Marka" />
+      <End Role="Urun" EntitySet="Urun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Marka_Resim" Association="Self.FK_Marka_Resim">
+      <End Role="Resim" EntitySet="Resim" />
+      <End Role="Marka" EntitySet="Marka" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Satis_dbo_Musteri_Musteri_MusteriId" Association="Self.FK_dbo_Satis_dbo_Musteri_Musteri_MusteriId">
+      <End Role="Musteri" EntitySet="Musteri" />
+      <End Role="Satis" EntitySet="Satis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_OneCikanlar_dbo_Yorum_Yorum_YorumId" Association="Self.FK_dbo_OneCikanlar_dbo_Yorum_Yorum_YorumId">
+      <End Role="Yorum" EntitySet="Yorum" />
+      <End Role="OneCikanlar" EntitySet="OneCikanlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resim_Urun" Association="Self.FK_Resim_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="Resim" EntitySet="Resim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Satis_dbo_SiparisDurum_SiparisDurumId" Association="Self.FK_dbo_Satis_dbo_SiparisDurum_SiparisDurumId">
+      <End Role="SiparisDurum" EntitySet="SiparisDurum" />
+      <End Role="Satis" EntitySet="Satis" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(OnlineSatisDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(OnlineSatisDBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

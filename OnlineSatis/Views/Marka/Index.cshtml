@@ -1,0 +1,35 @@
+﻿@model IEnumerable<OnlineSatis.Models.DB.Marka>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Markalar</h2>
+
+<a class="btn btn-success btn-sm"  href="/Marka/Create/"><i class="glyphicon glyphicon-plus">Marka Ekle</i></a>
+
+<table class="table table-striped" id="myTable">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Adı</th>
+        <th>Açıklama</th> 
+        <th>İşlemler</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.MarkaId</td>
+            <td>@item.Adi</td>
+            <td>@Html.Raw(item.Aciklama)</td>
+            <td><a class="btn btn-warning btn-sm " href="/Marka/Edit/@item.MarkaId">Güncelle</a>  <a  class="btn btn-danger btn-sm "href="/Marka/Delete/@item.MarkaId">Sil</a></td>
+
+        </tr>
+    }
+
+
+    </tbody>
+</table>

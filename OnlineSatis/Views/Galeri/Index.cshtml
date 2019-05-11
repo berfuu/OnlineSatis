@@ -1,0 +1,38 @@
+﻿@model List<OnlineSatis.Models.DB.Resim>
+@{
+    ViewBag.Title = "Ürüne Ait Görseller";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <a href="/Urunler/Index/" class="btn btn-primary">
+            <span class="fa fa-angle-left "></span> &nbsp; Ürünlere Dön
+        </a>
+        <h4 class="text-center">Ürün Galerisi</h4>
+    </div>
+    @foreach (var item in Model)
+    {
+    <div class="col-md-4">
+        <img src="@Html.DisplayFor(sa=>item.ResimURL)" alt="@Html.DisplayFor(sa=>item.Urun.Adi) Images" class="img-thumbnail">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/Galeri/Delete?resimid=@Html.DisplayFor(sa=>item.ResimId)&urunid=@Html.DisplayFor(sa=>item.UrunId)" class="btn btn-danger btn-sm btn-block">
+                    Sil
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="@Html.DisplayFor(sa=>item.ResimURL)" target="_blank" class="btn btn-warning btn-sm btn-block">
+                    Resim İncele
+                </a>
+            </div>
+            
+        </div>
+    
+        </div>
+    }
+
+
+</div>
+
+

@@ -1,0 +1,14 @@
+﻿@model IEnumerable<OnlineSatis.Models.DB.BlogKategori>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li class="bor18">
+            <a href="/Home/KategoriBlog/@item.BlogKategoriId" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+               @item.KategoriAd
+               <span>(@item.Blog.Count())</span>
+            </a>
+        </li>
+    }
+  
+
+</ul>

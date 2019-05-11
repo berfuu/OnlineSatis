@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OnlineSatis.Models.DB.UrunVaryant>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Ürün Özellik</h2>
+
+<a class="btn btn-default" href="/UrunOzellik/Create/">Yeni Ürün Özellik Ekle</a>
+
+<table class="table table-striped" id="myTable">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Label</th>
+            <th>Value</th>
+            <th>UrunId</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Label</td>
+            <td>@item.Value</td>
+            <td>@item.UrunId</td>
+           
+           
+
+            <td><a href="/UrunOzellik/Edit/@item.Id">Güncelle</a> | <a href="/UrunOzellik/Delete/@item.Id">Sil</a></td>
+        </tr>
+        }
+
+
+    </tbody>
+</table>

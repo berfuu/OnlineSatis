@@ -1,0 +1,69 @@
+﻿@model OnlineSatis.Models.DB.Urun
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Ürün Düzenle</h2>
+
+<div class="form">
+    @*<form class="form-validate form-horizontal" id="feedback_form" method="post" action="/Blog/Create/" enctype="multipart/form-data">*@
+
+    @using (Html.BeginForm("Edit", "Urunler", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken();
+        <div class="form-group ">
+            <label for="cname" class="control-label col-lg-2">Marka Adı <span class="required">*</span></label>
+            <div class="col-lg-10">
+                <input class="form-control" id="Adi" name="Adi"  type="text" required value="@Model.Adi" />
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label for="cemail" class="control-label col-lg-2">Açıklama <span class="required">*</span></label>
+            <div class="col-lg-10">
+                <textarea class="ckeditor" name="Aciklama">@Model.Aciklama</textarea>
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="cemail" class="control-label col-lg-2">Alış Fiyat <span class="required">*</span></label>
+            <div class="col-lg-10">
+                <textarea class="ckeditor" name="Alis">@Model.AlisFiyat</textarea>
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="cemail" class="control-label col-lg-2">Satiş Fiyat <span class="required">*</span></label>
+            <div class="col-lg-10">
+                <textarea class="ckeditor" name="Satis">@Model.SatisFiyat</textarea>
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="cemail" class="control-label col-lg-2">Kategori <span class="required">*</span></label>
+            <div class="col-lg-10">
+                @Html.DropDownList("Kategoriler", null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label for="cemail" class="control-label col-lg-2">Marka <span class="required">*</span></label>
+            <div class="col-lg-10">
+                @Html.DropDownList("Markalar", null, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="curl" class="control-label col-lg-2">Resim </label>
+            <div class="col-lg-10">
+                <input type="file" class="form-control " name="ResimURL" accept=".jpg,.png.,.jpeg" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button class="btn btn-primary" type="submit">Ekle</button>
+                <button class="btn btn-default" type="button"><a href="/Urunler/Index">İptal</a></button>
+            </div>
+        </div>
+    }
+
+    @*</form>*@
+</div>
