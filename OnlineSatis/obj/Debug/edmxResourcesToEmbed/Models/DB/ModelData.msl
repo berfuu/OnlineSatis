@@ -163,6 +163,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SepetUrunu">
+      <EntityTypeMapping TypeName="OnlineSatisDBModel.SepetUrunu">
+        <MappingFragment StoreEntitySet="SepetUrunu">
+          <ScalarProperty Name="SepetUrunId" ColumnName="SepetUrunId" />
+          <ScalarProperty Name="SeptId" ColumnName="SeptId" />
+          <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+          <ScalarProperty Name="OluşturmaTarihi" ColumnName="OluşturmaTarihi" />
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SiparisDurum">
       <EntityTypeMapping TypeName="OnlineSatisDBModel.SiparisDurum">
         <MappingFragment StoreEntitySet="SiparisDurum">
@@ -214,6 +225,17 @@
           <ScalarProperty Name="Label" ColumnName="Label" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UrunYorum">
+      <EntityTypeMapping TypeName="OnlineSatisDBModel.UrunYorum">
+        <MappingFragment StoreEntitySet="UrunYorum">
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Eposta" ColumnName="Eposta" />
+          <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+          <ScalarProperty Name="UrunYorumId" ColumnName="UrunYorumId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

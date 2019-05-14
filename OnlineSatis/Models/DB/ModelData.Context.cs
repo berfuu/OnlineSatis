@@ -42,11 +42,13 @@ namespace OnlineSatis.Models.DB
         public virtual DbSet<OneCikanlar> OneCikanlar { get; set; }
         public virtual DbSet<Resim> Resim { get; set; }
         public virtual DbSet<Satis> Satis { get; set; }
+        public virtual DbSet<SepetUrunu> SepetUrunu { get; set; }
         public virtual DbSet<SiparisDurum> SiparisDurum { get; set; }
         public virtual DbSet<Slider> Slider { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Urun> Urun { get; set; }
         public virtual DbSet<UrunVaryant> UrunVaryant { get; set; }
+        public virtual DbSet<UrunYorum> UrunYorum { get; set; }
         public virtual DbSet<Yorum> Yorum { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

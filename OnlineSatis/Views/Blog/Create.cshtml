@@ -1,4 +1,4 @@
-﻿
+﻿@model OnlineSatis.Models.DB.Blog
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -20,7 +20,7 @@
         <div class="form-group ">
             <label for="cname" class="control-label col-lg-2">Başlık <span class="required">*</span></label>
             <div class="col-lg-10">
-                <input class="form-control" id="Baslik" name="Baslik" minlength="5" type="text" required />
+                <input class="form-control" id="Baslik" name="Baslik"  type="text" required />
             </div>
         </div>
         <div class="form-group ">
@@ -35,10 +35,16 @@
                 <textarea class="ckeditor" name="Icerik"></textarea>
             </div>
         </div>
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Icerik, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea name="Icerik" class="ckeditor">@Model.Icerik</textarea>
+            </div>
+        </div>*@
         <div class="form-group ">
             <label for="curl" class="control-label col-lg-2">Resim </label>
             <div class="col-lg-10">
-                <input required type="file" class="form-control " name="ResimURL" accept=".jpg,.png.,.jpeg" />
+                <input required type="file" class="form-control " name="ResimURL" accept=".jpg,.png,.jpeg" />
             </div>
         </div>
 

@@ -17,8 +17,8 @@ namespace KurumsalWeb.Controllers
 
         public ActionResult Index()
         {
-            db.Configuration.LazyLoadingEnabled = false;
-            return View(db.Blog.Include("BlogKategori").ToList().OrderByDescending(x => x.BlogId));
+            //db.Configuration.LazyLoadingEnabled = false;
+             return View(db.Blog./*Include("BlogKategori").*/ToList().OrderByDescending(x => x.BlogId));
         }
 
         public ActionResult Create()
@@ -96,22 +96,22 @@ namespace KurumsalWeb.Controllers
             return View(blog);
         }
 
-        [HttpPost]
+ 
         public ActionResult Delete(int id)
         {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
             var b = db.Blog.Find(id);
             if (b == null)
             {
                 return HttpNotFound();
             }
-            if (System.IO.File.Exists(Server.MapPath(b.ResimURL)))
-            {
-                System.IO.File.Delete(Server.MapPath(b.ResimURL));
-            }
             db.Blog.Remove(b);
             db.SaveChanges();
-
             return RedirectToAction("Index");
+
         }
     }
 }

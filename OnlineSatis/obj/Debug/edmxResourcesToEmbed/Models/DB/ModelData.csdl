@@ -30,7 +30,7 @@
     <Property Name="ResimURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="BlogKategori" Relationship="Self.FK_dbo_Blog_dbo_BlogKategori_BlogKategoriId" FromRole="Blog" ToRole="BlogKategori" />
     <NavigationProperty Name="Like" Relationship="Self.FK_dbo_Like_dbo_Blog_Blog_BlogId" FromRole="Blog" ToRole="Like" />
-    <NavigationProperty Name="Yorum" Relationship="Self.FK_dbo_Yorum_dbo_Blog_BlogId" FromRole="Blog" ToRole="Yorum" />
+    <NavigationProperty Name="Yorum" Relationship="Self.FK_Yorum_Blog" FromRole="Blog" ToRole="Yorum" />
   </EntityType>
   <EntityType Name="BlogKategori">
     <Key>
@@ -168,6 +168,17 @@
     <NavigationProperty Name="Musteri" Relationship="Self.FK_dbo_Satis_dbo_Musteri_Musteri_MusteriId" FromRole="Satis" ToRole="Musteri" />
     <NavigationProperty Name="SiparisDurum" Relationship="Self.FK_dbo_Satis_dbo_SiparisDurum_SiparisDurumId" FromRole="Satis" ToRole="SiparisDurum" />
   </EntityType>
+  <EntityType Name="SepetUrunu">
+    <Key>
+      <PropertyRef Name="SepetUrunId" />
+    </Key>
+    <Property Name="SepetUrunId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SeptId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Miktar" Type="Int32" />
+    <Property Name="OluşturmaTarihi" Type="DateTime" Precision="3" />
+    <Property Name="UrunId" Type="Int32" />
+    <NavigationProperty Name="Urun" Relationship="Self.FK_SepetUrunu_Urun" FromRole="SepetUrunu" ToRole="Urun" />
+  </EntityType>
   <EntityType Name="SiparisDurum">
     <Key>
       <PropertyRef Name="SiparisDurumId" />
@@ -211,6 +222,9 @@
     <NavigationProperty Name="Kategori" Relationship="Self.FK_dbo_Urun_dbo_Kategori_KategoriId" FromRole="Urun" ToRole="Kategori" />
     <NavigationProperty Name="Marka" Relationship="Self.FK_dbo_Urun_dbo_Marka_MarkaId" FromRole="Urun" ToRole="Marka" />
     <NavigationProperty Name="Resim" Relationship="Self.FK_Resim_Urun" FromRole="Urun" ToRole="Resim" />
+    <NavigationProperty Name="SepetUrunu" Relationship="Self.FK_SepetUrunu_Urun" FromRole="Urun" ToRole="SepetUrunu" />
+    <NavigationProperty Name="UrunVaryant" Relationship="Self.FK_UrunVaryant_Urun" FromRole="Urun" ToRole="UrunVaryant" />
+    <NavigationProperty Name="UrunYorum" Relationship="Self.FK_UrunYorum_Urun" FromRole="Urun" ToRole="UrunYorum" />
   </EntityType>
   <EntityType Name="UrunVaryant">
     <Key>
@@ -220,6 +234,18 @@
     <Property Name="Label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="UrunId" Type="Int32" />
+    <NavigationProperty Name="Urun" Relationship="Self.FK_UrunVaryant_Urun" FromRole="UrunVaryant" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="UrunYorum">
+    <Key>
+      <PropertyRef Name="UrunYorumId" />
+    </Key>
+    <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Eposta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Icerik" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UrunId" Type="Int32" />
+    <Property Name="UrunYorumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Urun" Relationship="Self.FK_UrunYorum_Urun" FromRole="UrunYorum" ToRole="Urun" />
   </EntityType>
   <EntityType Name="Yorum">
     <Key>
@@ -231,7 +257,7 @@
     <Property Name="Icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="BlogId" Type="Int32" Nullable="false" />
     <Property Name="Onay" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Blog" Relationship="Self.FK_dbo_Yorum_dbo_Blog_BlogId" FromRole="Yorum" ToRole="Blog" />
+    <NavigationProperty Name="Blog" Relationship="Self.FK_Yorum_Blog" FromRole="Yorum" ToRole="Blog" />
     <NavigationProperty Name="OneCikanlar" Relationship="Self.FK_dbo_OneCikanlar_dbo_Yorum_Yorum_YorumId" FromRole="Yorum" ToRole="OneCikanlar" />
   </EntityType>
   <Association Name="FK_dbo_Blog_dbo_BlogKategori_BlogKategoriId">
@@ -258,10 +284,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_Yorum_dbo_Blog_BlogId">
-    <End Role="Blog" Type="Self.Blog" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+  <Association Name="FK_Yorum_Blog">
+    <End Role="Blog" Type="Self.Blog" Multiplicity="1" />
     <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Blog">
@@ -400,6 +424,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SepetUrunu_Urun">
+    <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+    <End Role="SepetUrunu" Type="Self.SepetUrunu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="SepetUrunu">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrunVaryant_Urun">
+    <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+    <End Role="UrunVaryant" Type="Self.UrunVaryant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="UrunVaryant">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UrunYorum_Urun">
+    <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+    <End Role="UrunYorum" Type="Self.UrunYorum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="UrunYorum">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="OnlineSatisDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
     <EntitySet Name="Admin" EntityType="Self.Admin" />
@@ -416,11 +476,13 @@
     <EntitySet Name="OneCikanlar" EntityType="Self.OneCikanlar" />
     <EntitySet Name="Resim" EntityType="Self.Resim" />
     <EntitySet Name="Satis" EntityType="Self.Satis" />
+    <EntitySet Name="SepetUrunu" EntityType="Self.SepetUrunu" />
     <EntitySet Name="SiparisDurum" EntityType="Self.SiparisDurum" />
     <EntitySet Name="Slider" EntityType="Self.Slider" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Urun" EntityType="Self.Urun" />
     <EntitySet Name="UrunVaryant" EntityType="Self.UrunVaryant" />
+    <EntitySet Name="UrunYorum" EntityType="Self.UrunYorum" />
     <EntitySet Name="Yorum" EntityType="Self.Yorum" />
     <AssociationSet Name="FK_dbo_Blog_dbo_BlogKategori_BlogKategoriId" Association="Self.FK_dbo_Blog_dbo_BlogKategori_BlogKategoriId">
       <End Role="BlogKategori" EntitySet="BlogKategori" />
@@ -430,7 +492,7 @@
       <End Role="Blog" EntitySet="Blog" />
       <End Role="Like" EntitySet="Like" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_Yorum_dbo_Blog_BlogId" Association="Self.FK_dbo_Yorum_dbo_Blog_BlogId">
+    <AssociationSet Name="FK_Yorum_Blog" Association="Self.FK_Yorum_Blog">
       <End Role="Blog" EntitySet="Blog" />
       <End Role="Yorum" EntitySet="Yorum" />
     </AssociationSet>
@@ -473,6 +535,18 @@
     <AssociationSet Name="FK_dbo_Satis_dbo_SiparisDurum_SiparisDurumId" Association="Self.FK_dbo_Satis_dbo_SiparisDurum_SiparisDurumId">
       <End Role="SiparisDurum" EntitySet="SiparisDurum" />
       <End Role="Satis" EntitySet="Satis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SepetUrunu_Urun" Association="Self.FK_SepetUrunu_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="SepetUrunu" EntitySet="SepetUrunu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrunVaryant_Urun" Association="Self.FK_UrunVaryant_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="UrunVaryant" EntitySet="UrunVaryant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UrunYorum_Urun" Association="Self.FK_UrunYorum_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="UrunYorum" EntitySet="UrunYorum" />
     </AssociationSet>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />

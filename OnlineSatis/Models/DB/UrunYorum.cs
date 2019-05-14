@@ -12,12 +12,13 @@ namespace OnlineSatis.Models.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class UrunVaryant
+    public partial class UrunYorum
     {
-        public int Id { get; set; }
-        public string Label { get; set; }
-        public string Value { get; set; }
+        public string AdSoyad { get; set; }
+        public string Eposta { get; set; }
+        public string Icerik { get; set; }
         public Nullable<int> UrunId { get; set; }
+        public int UrunYorumId { get; set; }
     
         public virtual Urun Urun { get; set; }
     }

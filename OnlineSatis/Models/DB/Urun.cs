@@ -18,6 +18,9 @@ namespace OnlineSatis.Models.DB
         public Urun()
         {
             this.Resim = new HashSet<Resim>();
+            this.SepetUrunu = new HashSet<SepetUrunu>();
+            this.UrunVaryant = new HashSet<UrunVaryant>();
+            this.UrunYorum = new HashSet<UrunYorum>();
         }
     
         public int UrunId { get; set; }
@@ -33,5 +36,11 @@ namespace OnlineSatis.Models.DB
         public virtual Marka Marka { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Resim> Resim { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SepetUrunu> SepetUrunu { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UrunVaryant> UrunVaryant { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UrunYorum> UrunYorum { get; set; }
     }
 }

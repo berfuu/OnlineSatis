@@ -1,5 +1,5 @@
 ﻿
-
+@model OnlineSatis.ViewModel.Home.SepetViewModel
 <!-- Cart -->
 <div class="wrap-header-cart js-panel-cart">
     <div class="s-full js-hide-cart"></div>
@@ -17,23 +17,27 @@
 
         <div class="header-cart-content flex-w js-pscroll">
             <ul class="header-cart-wrapitem w-full">
-                <li class="header-cart-item flex-w flex-t m-b-12">
-                    <div class="header-cart-item-img">
-                        <img src="/Content/SiteLayout/images/item-cart-01.jpg" alt="IMG">
-                    </div>
+                @foreach (var item in Model.SepetUrunleri)
+                {
+                    <li class="header-cart-item flex-w flex-t m-b-12">
+                        <div class="header-cart-item-img">
+                            <img src="@item.Urun.Resim.FirstOrDefault().ResimURL" alt="@item.Urun.Adi">
+                        </div>
 
-                    <div class="header-cart-item-txt p-t-8">
-                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                            White Shirt Pleat
-                        </a>
+                        <div class="header-cart-item-txt p-t-8">
+                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                              @item.Urun.Adi
+                            </a>
 
-                        <span class="header-cart-item-info">
-                            1 x $19.00
-                        </span>
-                    </div>
-                </li>
+                            <span class="header-cart-item-info">
+                                @item.Miktar X @item.Urun.SatisFiyat
+                            </span>
+                        </div>
+                    </li>
+                }
 
-                <li class="header-cart-item flex-w flex-t m-b-12">
+
+                @*<li class="header-cart-item flex-w flex-t m-b-12">
                     <div class="header-cart-item-img">
                         <img src="/Content/SiteLayout/images/item-cart-02.jpg" alt="IMG">
                     </div>
@@ -63,12 +67,12 @@
                             1 x $17.00
                         </span>
                     </div>
-                </li>
+                </li>*@
             </ul>
 
             <div class="w-full">
                 <div class="header-cart-total w-full p-tb-40">
-                    Total: $75.00
+                    Total:@Model.SepetTutarı
                 </div>
 
                 <div class="header-cart-buttons flex-w w-full">

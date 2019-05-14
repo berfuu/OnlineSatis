@@ -4,31 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="69671b05dcee4cc0b36dbffa311ad605" Name="Diagram1">
-        <EntityTypeShape EntityType="OnlineSatisDBModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Admin" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Blog" Width="1.5" PointX="13" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.BlogKategori" Width="1.5" PointX="10.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Hakkimizda" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Iletisim" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Kargo" Width="1.5" PointX="5.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Kategori" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Kimlik" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Like" Width="1.5" PointX="15.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Marka" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Musteri" Width="1.5" PointX="5.75" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.OneCikanlar" Width="1.5" PointX="17.5" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Resim" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Satis" Width="1.5" PointX="8" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.SiparisDurum" Width="1.5" PointX="5.75" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Slider" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Urun" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.UrunVaryant" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineSatisDBModel.Yorum" Width="1.5" PointX="15.25" PointY="4.375" IsExpanded="true" />
+      <Diagram DiagramId="efa00133b8e34e4fbd4cba75280d92ad" Name="Diagram1" ZoomLevel="124">
+        <EntityTypeShape EntityType="OnlineSatisDBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Admin" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Blog" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.BlogKategori" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Hakkimizda" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Iletisim" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Kargo" Width="1.5" PointX="9.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Kategori" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Kimlik" Width="1.5" PointX="11.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Like" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Marka" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Musteri" Width="1.5" PointX="9.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.OneCikanlar" Width="1.5" PointX="7.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Resim" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Satis" Width="1.5" PointX="12" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.SepetUrunu" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.SiparisDurum" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Slider" Width="1.5" PointX="11.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Urun" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.UrunVaryant" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.UrunYorum" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineSatisDBModel.Yorum" Width="1.5" PointX="5.25" PointY="15.375" IsExpanded="true" />
         <AssociationConnector Association="OnlineSatisDBModel.FK_dbo_Blog_dbo_BlogKategori_BlogKategoriId" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineSatisDBModel.FK_dbo_Like_dbo_Blog_Blog_BlogId" ManuallyRouted="false" />
-        <AssociationConnector Association="OnlineSatisDBModel.FK_dbo_Yorum_dbo_Blog_BlogId" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSatisDBModel.FK_Yorum_Blog" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineSatisDBModel.FK_dbo_Satis_dbo_Kargo_KargoId" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineSatisDBModel.FK_dbo_Urun_dbo_Kategori_KategoriId" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineSatisDBModel.FK_Kategori_Resim" ManuallyRouted="false" />
@@ -39,6 +41,9 @@
         <AssociationConnector Association="OnlineSatisDBModel.FK_dbo_OneCikanlar_dbo_Yorum_Yorum_YorumId" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineSatisDBModel.FK_Resim_Urun" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineSatisDBModel.FK_dbo_Satis_dbo_SiparisDurum_SiparisDurumId" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSatisDBModel.FK_SepetUrunu_Urun" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSatisDBModel.FK_UrunVaryant_Urun" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineSatisDBModel.FK_UrunYorum_Urun" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

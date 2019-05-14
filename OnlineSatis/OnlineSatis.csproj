@@ -1067,6 +1067,7 @@
     <Content Include="Content\SiteLayout\blog-detail.html" />
     <Content Include="Content\SiteLayout\blog.html" />
     <Content Include="Content\SiteLayout\contact.html" />
+    <Content Include="Content\SiteLayout\css\c_slider\c_slider.css" />
     <Content Include="Content\SiteLayout\css\main.css" />
     <Content Include="Content\SiteLayout\css\product-03.jpg" />
     <Content Include="Content\SiteLayout\css\util.css" />
@@ -1113,6 +1114,7 @@
     <Content Include="Content\SiteLayout\images\gallery-07.jpg" />
     <Content Include="Content\SiteLayout\images\gallery-08.jpg" />
     <Content Include="Content\SiteLayout\images\gallery-09.jpg" />
+    <Content Include="Content\SiteLayout\images\hakkimizda.jpg" />
     <Content Include="Content\SiteLayout\images\icons\favicon.png" />
     <Content Include="Content\SiteLayout\images\icons\icon-close.png" />
     <Content Include="Content\SiteLayout\images\icons\icon-close2.png" />
@@ -1129,11 +1131,14 @@
     <Content Include="Content\SiteLayout\images\icons\logo-01.png" />
     <Content Include="Content\SiteLayout\images\icons\logo-02.png" />
     <Content Include="Content\SiteLayout\images\icons\pin.png" />
+    <Content Include="Content\SiteLayout\images\iletisim.jpg" />
+    <Content Include="Content\SiteLayout\images\images.png" />
     <Content Include="Content\SiteLayout\images\item-cart-01.jpg" />
     <Content Include="Content\SiteLayout\images\item-cart-02.jpg" />
     <Content Include="Content\SiteLayout\images\item-cart-03.jpg" />
     <Content Include="Content\SiteLayout\images\item-cart-04.jpg" />
     <Content Include="Content\SiteLayout\images\item-cart-05.jpg" />
+    <Content Include="Content\SiteLayout\images\kitap.jpg" />
     <Content Include="Content\SiteLayout\images\product-01.jpg" />
     <Content Include="Content\SiteLayout\images\product-02.jpg" />
     <Content Include="Content\SiteLayout\images\product-03.jpg" />
@@ -1167,6 +1172,7 @@
     <Content Include="Content\SiteLayout\images\thumb-02.jpg" />
     <Content Include="Content\SiteLayout\images\thumb-03.jpg" />
     <Content Include="Content\SiteLayout\index.html" />
+    <Content Include="Content\SiteLayout\js\c_slider\c_slider.js" />
     <Content Include="Content\SiteLayout\js\main.js" />
     <Content Include="Content\SiteLayout\js\map-custom.js" />
     <Content Include="Content\SiteLayout\js\slick-custom.js" />
@@ -1638,6 +1644,9 @@
     <Compile Include="Models\DB\Satis.cs">
       <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DB\SepetUrunu.cs">
+      <DependentUpon>ModelData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\SiparisDurum.cs">
       <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
@@ -1659,10 +1668,16 @@
     <Compile Include="Models\DB\UrunVaryant.cs">
       <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DB\UrunYorum.cs">
+      <DependentUpon>ModelData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\Yorum.cs">
       <DependentUpon>ModelData.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\Home\IndexViewModel.cs" />
+    <Compile Include="ViewModel\Home\SepetViewModel.cs" />
+    <Compile Include="ViewModel\Home\UrunDetayViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -1740,6 +1755,7 @@
     <Content Include="Views\Home\KategoriPartical.cshtml" />
     <Content Include="Views\Home\Urun.cshtml" />
     <Content Include="Views\Home\UrunDetay.cshtml" />
+    <Content Include="Views\Home\KategoriUrun.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
