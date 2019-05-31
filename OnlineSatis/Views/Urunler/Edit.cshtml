@@ -12,10 +12,11 @@
     @using (Html.BeginForm("Edit", "Urunler", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken();
+        <input class="form-control" id="UrunId" name="UrunId" type="hidden" value="@Model.UrunId" />
         <div class="form-group ">
             <label for="cname" class="control-label col-lg-2">Marka Adı <span class="required">*</span></label>
             <div class="col-lg-10">
-                <input class="form-control" id="Adi" name="Adi"  type="text" required value="@Model.Adi" />
+                <input class="form-control" id="Adi" name="Adi" type="text" required value="@Model.Adi" />
             </div>
         </div>
 
@@ -28,13 +29,13 @@
         <div class="form-group ">
             <label for="cemail" class="control-label col-lg-2">Alış Fiyat <span class="required">*</span></label>
             <div class="col-lg-10">
-                <textarea class="ckeditor" name="Alis">@Model.AlisFiyat</textarea>
+                <textarea class="form-control" name="Alis">@Model.AlisFiyat</textarea>
             </div>
         </div>
         <div class="form-group ">
             <label for="cemail" class="control-label col-lg-2">Satiş Fiyat <span class="required">*</span></label>
             <div class="col-lg-10">
-                <textarea class="ckeditor" name="Satis">@Model.SatisFiyat</textarea>
+                <textarea class="form-control" name="Satis">@Model.SatisFiyat</textarea>
             </div>
         </div>
         <div class="form-group ">
@@ -53,13 +54,17 @@
         <div class="form-group ">
             <label for="curl" class="control-label col-lg-2">Resim </label>
             <div class="col-lg-10">
-                <input type="file" class="form-control " name="ResimURL" accept=".jpg,.png.,.jpeg" />
+                <input id="resimler" type="file" class="form-control " name="ResimURL" multiple accept=".jpg,.png.,.jpeg" />
+                <br />
+                <button class="btn btn-primary" type="button" onclick="AddImg();">Resim Ekle</button>
+                <button class="btn btn-default" type="button" onclick="RemoveImg();">Resim Çıkart</button>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <button class="btn btn-primary" type="submit">Ekle</button>
+                <br /> 
+                <button class="btn btn-primary" type="submit">Güncelle</button>
                 <button class="btn btn-default" type="button"><a href="/Urunler/Index">İptal</a></button>
             </div>
         </div>
@@ -67,3 +72,30 @@
 
     @*</form>*@
 </div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+
+    function AddImg() {
+            
+        var formData = new FormData();
+        var urunId = $('#UrunId').val();
+        formData.append('file', $('#resimler')[0].files[0]);
+        $.ajax({
+            type: 'post',
+            url: '/Urunler/ResimEkle?urunId=' + urunId,
+            data: formData ,
+            success: function (status) {
+                alert(status);
+                //if (status != 'error') {
+                //    var my_path = "MediaUploader/" + status;
+                //    $("#myUploadedImg").attr("src", my_path);
+                //}
+            },
+            processData: false,
+            contentType: false,
+            error: function () {
+                alert("Whoops something went wrong!");
+            }
+        });
+    }
+</script>

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mime;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -22,7 +24,7 @@ namespace OnlineSatis.Controllers
         public ActionResult Create()
         {
 
-            ViewBag.Kategoriler =new SelectList(db.Kategori, "KategoriId", "Adi"); // contoller den view veri taşımak için kullanılır.
+            ViewBag.Kategoriler = new SelectList(db.Kategori, "KategoriId", "Adi"); // contoller den view veri taşımak için kullanılır.
             ViewBag.Markalar = new SelectList(db.Marka, "MarkaId", "Adi");
             return View(new Urun());
         }
@@ -37,7 +39,7 @@ namespace OnlineSatis.Controllers
             db.SaveChanges();
             var b = db.Urun.OrderByDescending(x => x.UrunId).FirstOrDefault();
 
-            if (BrandImg != null )
+            if (BrandImg != null)
             {
                 foreach (var item in BrandImg)
                 {
@@ -46,20 +48,20 @@ namespace OnlineSatis.Controllers
 
                     string urunimgname = Guid.NewGuid().ToString() + imginfo.Extension;
                     img.Resize(600, 400);
-                    string imgPath = "/Uploads/Urun/" + urunimgname;
+                    string imgPath = "~/Uploads/Urun/" + urunimgname;
                     img.Save(imgPath);
                     db.Resim.Add(new Resim()
                     {
-                        ResimURL = imgPath,
+                        ResimURL = imgPath.Remove(0, 1),
                         UrunId = b.UrunId
 
-                        
+
                     });
                     db.SaveChanges();
                 }
             }
-            
-          
+
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -87,37 +89,72 @@ namespace OnlineSatis.Controllers
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
 
-        public ActionResult Edit(int id, Urun urun, HttpPostedFileBase BrandImg)
+        public ActionResult Edit(Urun urun, List<HttpPostedFileBase> BrandImg)
         {
+
             if (ModelState.IsValid)
             {
-                var b = db.Urun.Where(x => x.UrunId == id).SingleOrDefault();
+                var b = db.Urun.Where(x => x.UrunId == urun.UrunId).SingleOrDefault();
                 if (BrandImg != null)
                 {
-                    //if (System.IO.File.Exists(Server.MapPath(b.ResimURL)))
-                    //{
-                    //    System.IO.File.Delete(Server.MapPath(b.ResimURL));
-                    //}
+                    foreach (var item in BrandImg)
+                    {
+                        WebImage img = new WebImage(item.InputStream);
+                        FileInfo imginfo = new FileInfo(item.FileName);
 
-                    WebImage img = new WebImage(BrandImg.InputStream);
-                    FileInfo imginfo = new FileInfo(BrandImg.FileName);
+                        string urunimgname = Guid.NewGuid().ToString() + imginfo.Extension;
+                        img.Resize(600, 400);
+                        string imgPath = "/Uploads/Urun/" + urunimgname;
+                        img.Save(imgPath);
 
-                    string urunimgname = Guid.NewGuid().ToString() + imginfo.Extension;
-                    img.Resize(600, 400);
-                    img.Save("~/Uploads/Urun/" + urunimgname);
-
-                    //b.ResimURL = "/Uploads/Urun/" + urunimgname;
+                        db.SaveChanges();
+                    }
                 }
 
                 b.Adi = urun.Adi;
                 b.Aciklama = urun.Aciklama;
-                b.KategoriId = urun.KategoriId;
+                b.Kategori = urun.Kategori;
+                b.AlisFiyat = urun.AlisFiyat;
+                b.SatisFiyat = urun.SatisFiyat;
+                b.Resim = urun.Resim;
+                b.Marka = urun.Marka;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-
             }
 
+
+
             return View(urun);
+        }
+
+        [HttpPost]
+        [Route("ResimEkle/{urunId}")]
+        public ActionResult ResimEkle(int urunId, List<HttpPostedFileBase> BrandImg)
+        {
+
+            var b = db.Urun.Where(x => x.UrunId == urunId).SingleOrDefault();
+            if (BrandImg != null)
+            {
+                foreach (var item in BrandImg)
+                {
+                    WebImage img = new WebImage(item.InputStream);
+                    FileInfo imginfo = new FileInfo(item.FileName);
+
+                    string urunimgname = Guid.NewGuid().ToString() + imginfo.Extension;
+                    img.Resize(600, 400);
+                    string imgPath = "~/Uploads/Urun/" + urunimgname;
+                    img.Save(imgPath);
+                    db.Resim.Add(new Resim()
+                    {
+                        ResimURL = imgPath.Remove(0, 1),
+                        UrunId = b.UrunId
+                    });
+                    db.SaveChanges();
+                }
+               
+            }
+            Response.StatusCode = (int)HttpStatusCode.OK;
+            return Json("Images added!", MediaTypeNames.Text.Plain);
         }
 
         [HttpPost]

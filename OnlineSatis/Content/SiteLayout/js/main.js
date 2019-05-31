@@ -122,7 +122,7 @@
     });
 
     $('.container-search-header').on('click', function(e){
-        e.stopPropagation();
+       // e.stopPropagation();
     });
 
 

@@ -262,13 +262,13 @@
                         <div class="block2-pic hov-img0">
                             @if (item.Resim.Count != 0)
                             {
-                                <img src="@item.Resim.FirstOrDefault().ResimURL" alt="@item.Adi">
+                                <img src="@item.Resim.FirstOrDefault().ResimURL" alt="@item.Adi" onclick="alert('hey!');">
                             }
                             else 
                             {
-                                <img src="/Content/SiteLayout/images/kitap.jpg" alt="@item.Adi">
+                                <img src="/Content/SiteLayout/images/kitap.jpg" alt="@item.Adi" onclick="alert('hey!');">
                             }
-                            <a href="/Home/UrunDetay/@item.UrunId" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                            <a href="/Home/UrunDetay/@item.UrunId" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                                 Quick View
                             </a>
                         </div>

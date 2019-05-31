@@ -1756,6 +1756,10 @@
     <Content Include="Views\Home\Urun.cshtml" />
     <Content Include="Views\Home\UrunDetay.cshtml" />
     <Content Include="Views\Home\KategoriUrun.cshtml" />
+    <Content Include="Views\Home\ShoppingCart.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\SifremiUnuttum.cshtml" />
+    <Content Include="Views\Home\UyeOl.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

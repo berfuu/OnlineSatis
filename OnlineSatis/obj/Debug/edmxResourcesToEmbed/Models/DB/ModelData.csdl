@@ -124,6 +124,7 @@
     <Property Name="KullaniciAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Satis" Relationship="Self.FK_dbo_Satis_dbo_Musteri_Musteri_MusteriId" FromRole="Musteri" ToRole="Satis" />
   </EntityType>
   <EntityType Name="OneCikanlar">

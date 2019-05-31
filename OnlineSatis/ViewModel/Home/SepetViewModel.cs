@@ -12,4 +12,6 @@ namespace OnlineSatis.ViewModel.Home
 
         public decimal SepetTutarı { get; set; }
     }
+
+    
 }

@@ -123,6 +123,7 @@
           <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

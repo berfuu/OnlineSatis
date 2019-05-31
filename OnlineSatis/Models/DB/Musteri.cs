@@ -26,6 +26,7 @@ namespace OnlineSatis.Models.DB
         public string KullaniciAdi { get; set; }
         public string Email { get; set; }
         public string Adres { get; set; }
+        public string Sifre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Satis> Satis { get; set; }

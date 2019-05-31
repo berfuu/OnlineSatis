@@ -113,6 +113,7 @@
     <Property Name="KullaniciAdi" Type="nvarchar(max)" />
     <Property Name="Email" Type="nvarchar(max)" />
     <Property Name="Adres" Type="nvarchar(max)" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="OneCikanlar">
     <Key>
